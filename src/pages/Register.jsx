@@ -5,6 +5,11 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
+  const handleSubmit = (e)=>{
+     e.preventDefault();
+     console.log(firstName,lastName);
+  }
   return (
     <div className="d-flex justify-content-center">
       <div className="form-image d-none d-md-block">
@@ -12,7 +17,7 @@ const Register = () => {
       </div>
       <div className="register-form">
         <h1 className="form-title display-3">Register</h1>
-        <form id="register">
+        <form id="register" onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="firstName" className="form-label">
               First Name
