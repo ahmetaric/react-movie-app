@@ -6,6 +6,8 @@ import {
   onAuthStateChanged,
   signOut,
   updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 
 // TODO: Replace the following with your app's Firebase project configuration
@@ -68,4 +70,17 @@ export const userObserver = (setCurrentUser)=>{
 
 export const logOut = ()=>{
   signOut(auth);
+}
+
+export const signUpProvider = (navigate)=>{
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider)
+    .then((result) => {
+     console.log(result);
+     navigate("/");
+     
+    })
+    .catch((error) => {
+     console.log(error)
+    });
 }
