@@ -3,6 +3,8 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 
 // TODO: Replace the following with your app's Firebase project configuration
@@ -41,8 +43,24 @@ export const signIn = async(email,password,navigate)=>{
        password
      );
      navigate("/");
+    //  sessionStorage.setItem("user",JSON.stringify(userCredential.user))
      console.log(userCredential);
    } catch (error) {
      console.log(error);
    }
+}
+
+export const userObserver = (setCurrentUser)=>{
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setCurrentUser(user)
+     
+    } else {
+      setCurrentUser(false)
+    }
+  });
+}
+
+export const logOut = ()=>{
+  signOut(auth);
 }
