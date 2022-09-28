@@ -18,25 +18,28 @@ const MovieCard = ({poster_path,title,overview,vote_average,id}) => {
 
     }
   return (
-    <div className="movie">
-      <img
-        loading="lazy"
-        src={poster_path ? IMG_API + poster_path : defaultImage}
-        alt="movie-card"
-      />
-      <div className="d-flex align-items-baseline justify-content-between p-1 text-white">
-        <h5>{title}</h5>
-        
-          {currentUser && <span className={`tag ${setVoteClass(vote_average)}`}>
-            {vote_average}
-          </span>}
-        
+
+      <div className="movie">
+        <img
+          loading="lazy"
+          src={poster_path ? IMG_API + poster_path : defaultImage}
+          alt="movie-card"
+        />
+        <div className="d-flex align-items-baseline justify-content-between p-1 text-white">
+          <h5>{title}</h5>
+
+          {currentUser && (
+            <span className={`tag ${setVoteClass(vote_average)}`}>
+              {vote_average}
+            </span>
+          )}
+        </div>
+        <div className="movie-over">
+          <h2>Overview</h2>
+          <p>{overview}</p>
+        </div>
       </div>
-      <div className="movie-over">
-        <h2>Overview</h2>
-        <p>{overview}</p>
-      </div>
-    </div>
+    
   );
 };
 
