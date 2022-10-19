@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {signIn, signUpProvider} from "../auth/firebase"
+import {forgotPassword, signIn, signUpProvider} from "../auth/firebase"
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -52,14 +52,19 @@ const Login = () => {
               required
             />
           </div>
-          <div className="link">Forgot Password ?</div>
+          <div className="link" onClick={() => forgotPassword(email)}>
+            Forgot Password ?
+          </div>
           <input
             type="submit"
             className="btn btn-primary form-control"
             value="Login"
           />
         </form>
-        <button className="btn btn-primary form-control" onClick={handleProviderLogin}>
+        <button
+          className="btn btn-primary form-control"
+          onClick={handleProviderLogin}
+        >
           Continue With Google
         </button>
       </div>
